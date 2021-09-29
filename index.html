@@ -9,14 +9,13 @@
   <body>
 
 
-    <div class="container">
-      <div class="poke"></div>
-      <img src="" alt="">
-    </div>
+    <div class="pokeName"></div>
+    <div class="pokeUrl"></div>
 
     <script>
 
-      const container = document.querySelector('.container');
+      const pokeName = document.querySelector('.pokeName');
+      const pokeUrl = document.querySelector('.pokeUrl');
       
     
         /* 
@@ -55,13 +54,20 @@
         console.log(data);
         console.log(data.results[24].name);        
 
-        container.innerHTML=`${data.results[24].name}`;
+        pokeName.innerHTML=`${data.results[24].name}`;
+        
+        // 🍉when name is match , show the other data.
+        if (data.results[24].name ==='pikachu') {
+          console.log("hello")
+          pokeUrl.innerHTML=`${data.results[24].url}`;
+          
+        }
 
 
         });
         };
 
-        fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=200");
+        fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=100");
 
 
     </script>
