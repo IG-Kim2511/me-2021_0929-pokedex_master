@@ -14,34 +14,46 @@
     </div>
 
     <script>
-      const fetchPokeList = (url) => {
+
+        /* 
+        🦄api-url    
+
+        (https://pokeapi.co/api/v2/pokemon?offset=0&limit=20')
+
+        ('https://www.breakingbadapi.com/api/characters')
+
+        ('http://example.com/movies.json')
+
+        */
+
+
+        /*🍀 api-breakingbad*/
+
+        fetch('https://www.breakingbadapi.com/api/characters')
+
+        .then(response => response.json())
+
+        .then(data => console.log(data));
+
+
+        /*🍀 api-poke */
+
+        // initialize App
+
+
+        const fetchPokeList = (url) => {
         fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
+        .then((res) => res.json())
+        .then((data) => {
+        console.log(data);
+        console.log(data.results[0].name);
 
-            const { results, previous, next } = data;
-            prevUrl = previous;
-            nextUrl = next;
+        });
+        };
 
-            for (let i = 0; i < pokeListItems.length; i++) {
-              const pokeListItem = pokeListItems[i];
-              const resultData = results[i];
+        fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
 
-              if (resultData) {
-                const { name, url } = resultData;
-                const urlArray = url.split("/");
-                const id = urlArray[urlArray.length - 2];
-                pokeListItem.textContent = id + ". " + capitalize(name);
-              } else {
-                pokeListItem.textContent = "";
-              }
-            }
-          });
-      };
 
-      // initialize App
-      fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
     </script>
   </body>
 </html>
