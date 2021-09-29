@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     hello
-    
- <div class="container">
-     <div class="poke">
-     </div>
- </div>
+
+    <div class="container">
+      <div class="poke"></div>
+    </div>
 
     <script src="">
+      const fetchPokeList = (url) => {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
 
-// ig();
-// function ig(params) {
-    
+            const { results, previous, next } = data;
+            prevUrl = previous;
+            nextUrl = next;
 
-// fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20").then(
-//     res =>res.json()
-// ).then(data=>{console.log(data)});
+            for (let i = 0; i < pokeListItems.length; i++) {
+              const pokeListItem = pokeListItems[i];
+              const resultData = results[i];
 
-// }
+              if (resultData) {
+                const { name, url } = resultData;
+                const urlArray = url.split("/");
+                const id = urlArray[urlArray.length - 2];
+                pokeListItem.textContent = id + ". " + capitalize(name);
+              } else {
+                pokeListItem.textContent = "";
+              }
+            }
+          });
+      };
 
-
-fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20")
-  .then(response => response.json())
-  .then(data => console.log(data));
-  
-
+      // initialize App
+      fetchPokeList("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
     </script>
-</body>
+  </body>
 </html>
