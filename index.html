@@ -7,8 +7,31 @@
     <title>Document</title>
 </head>
 <body>
+    hello
+    
+ <div class="container">
+     <div class="poke">
+     </div>
+ </div>
+
+    <script src="">
+
+// ig();
+// function ig(params) {
     
 
-    <script src=""></script>
+// fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20").then(
+//     res =>res.json()
+// ).then(data=>{console.log(data)});
+
+// }
+
+
+fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20")
+  .then(response => response.json())
+  .then(data => console.log(data));
+  
+
+    </script>
 </body>
 </html>
